@@ -1,5 +1,5 @@
 [workspace]
-members = ["sys"]
+members = ["sys","examples"]
 
 [package]
 name = "whisper-rs"
@@ -14,6 +14,7 @@ repository = "https://github.com/tazz4843/whisper-rs"
 
 [dependencies]
 whisper-rs-sys = { path = "sys", version = "0.2" }
+hound = "3.5.0"
 
 [features]
 simd = []

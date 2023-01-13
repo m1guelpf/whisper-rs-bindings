@@ -1,2 +1,0 @@
-[analyzer]
-ignore = ["examples/audio_transscription.rs"]
