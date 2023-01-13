@@ -31,7 +31,7 @@ impl WhisperContext {
     /// `struct whisper_context * whisper_init(const char * path_model);`
     pub fn new(path: &str) -> Result<Self, WhisperError> {
         let path_cstr = CString::new(path)?;
-        let ctx = unsafe { whisper_rs_sys::whisper_init(path_cstr.as_ptr()) };
+        let ctx = unsafe { whisper_rs_sys::whisper_init_from_file(path_cstr.as_ptr()) };
         if ctx.is_null() {
             Err(WhisperError::InitError)
         } else {
