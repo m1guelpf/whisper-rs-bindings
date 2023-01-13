@@ -48,7 +48,7 @@ pub fn usage() {
         let segment = ctx.full_get_segment_text(i).expect("failed to get segment");
         let start_timestamp = ctx.full_get_segment_t0(i);
         let end_timestamp = ctx.full_get_segment_t1(i);
-        println!("[{} - {}]: {}", start_timestamp, end_timestamp, segment);
+        println!("[{start_timestamp} - {end_timestamp}]: {segment}");
     }
 }
 

@@ -1,10 +1,10 @@
-//! #rust-analyzer: ignore
 // This example is not going to build in this folder.
 // You need to copy this code into your project and add the whisper_rs dependency in your cargo.toml
 
 use std::fs::File;
 use std::io::Write;
 use whisper_rs::{FullParams, SamplingStrategy, WhisperContext};
+use hound::{WavReader, WavSpec};
 
 /// Loads a context and model, processes an audio file, and prints the resulting transcript to stdout.
 fn main() {
@@ -31,11 +31,10 @@ fn main() {
     params.set_print_timestamps(false);
 
     // Open the audio file.
-    let mut reader = hound::WavReader::open("audio.wav").expect("failed to open file");
-    let hound::WavSpec {
+    let mut reader = WavReader::open("audio.wav").expect("failed to open file");
+    let WavSpec {
         channels,
         sample_rate,
-        bits_per_sample,
         ..
     } = reader.spec();
 
@@ -75,10 +74,10 @@ fn main() {
         let end_timestamp = ctx.full_get_segment_t1(i);
 
         // Print the segment to stdout.
-        println!("[{} - {}]: {}", start_timestamp, end_timestamp, segment);
+        println!("[{start_timestamp} - {end_timestamp}]: {segment}");
 
         // Format the segment information as a string.
-        let line = format!("[{} - {}]: {}\n", start_timestamp, end_timestamp, segment);
+        let line = format!("[{start_timestamp} - {end_timestamp}]: {segment}\n");
 
         // Write the segment information to the file.
         file.write_all(line.as_bytes())
