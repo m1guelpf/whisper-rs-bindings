@@ -1,3 +1,4 @@
+//! #rust-analyzer: ignore
 // This example is not going to build in this folder.
 // You need to copy this code into your project and add the whisper_rs dependency in your cargo.toml
 
